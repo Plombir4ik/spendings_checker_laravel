@@ -27,9 +27,9 @@ export const CategoriesPage = () => {
     async (categoryId) => {
       try {
         const data = await request(
-          "api/categories",
+          `api/categories/${categoryId}`,
           "DELETE",
-          { categoryId: categoryId },
+          {},
           {
             Authorization: "Bearer" + " " + token,
           }
@@ -90,7 +90,7 @@ export const CategoriesPage = () => {
                       <Edit
                         fontSize="large"
                         onClick={() => {
-                          navigate("/categories/" + category._id);
+                          navigate("/categories/" + category.id);
                         }}
                       />
                     </IconButton>
@@ -98,7 +98,7 @@ export const CategoriesPage = () => {
                       <HighLightOff
                         fontSize="large"
                         onClick={() => {
-                          deleteCategory(category._id, index);
+                          deleteCategory(category.id, index);
                         }}
                       />
                     </IconButton>

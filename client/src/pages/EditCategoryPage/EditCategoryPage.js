@@ -53,8 +53,8 @@ export const EditCategoryPage = () => {
     try {
       if (categoryId !== undefined) {
         await request(
-          "/api/categories/" + categoryId,
-          "PUT",
+          `/api/categories/${categoryId}`,
+          "PATCH",
           { ...form },
           {
             Authorization: "Bearer" + " " + auth.token,
@@ -62,7 +62,7 @@ export const EditCategoryPage = () => {
         );
       } else {
         await request(
-          "/api/categories/create",
+          "/api/categories",
           "POST",
           { ...form },
           {

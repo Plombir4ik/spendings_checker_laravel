@@ -33,19 +33,19 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
-//
-//Route::group([
-//    'middleware' => 'auth',
-//    'prefix' => 'categories',
-//    'namespace' => 'category'
-//], function () {
-//    Route::get('/', 'IndexController');
-//    Route::get('/{category}', 'ShowController')->middleware('category.owner');
-//    Route::post('/', 'StoreController');
-//    Route::patch('/{category}', 'UpdateController')->middleware('category.owner');
-//    Route::delete('/{category}', 'DeleteController')->middleware('category.owner');
-//});
-//
+
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'categories',
+    'namespace' => 'category'
+], function () {
+    Route::get('/', 'IndexController');
+    Route::get('/{category}', 'ShowController')->middleware('category.owner');
+    Route::post('/', 'StoreController');
+    Route::patch('/{category}', 'UpdateController')->middleware('category.owner');
+    Route::delete('/{category}', 'DeleteController')->middleware('category.owner');
+});
+
 //Route::group([
 //    'middleware' => 'auth',
 //    'prefix' => 'transactions',
