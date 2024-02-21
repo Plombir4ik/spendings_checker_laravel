@@ -1,0 +1,15 @@
+{
+  "name": "spendings_checker_laravel",
+  "version": "1.0.0",
+  "description": "Check your spendings easily",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "laravel",
+    "react"
+  ],
+  "author": "Liubomyr Pidverbetskyi <liubomyr.pidverbetskyi@gmail.com>",
+  "license": "ISC"
+}
