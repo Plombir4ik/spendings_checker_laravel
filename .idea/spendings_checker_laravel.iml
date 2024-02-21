@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/server/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/server/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/server/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/carbonphp/carbon-doctrine-types" />
@@ -117,6 +119,15 @@
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/laravel/ui" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/namshi/jose" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/server/vendor/tymon/jwt-auth" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

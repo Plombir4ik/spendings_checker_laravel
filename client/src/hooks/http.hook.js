@@ -9,6 +9,7 @@ export const useHttp = () =>{
         try {
             if(body) {
                 body = JSON.stringify(body)
+                headers["Accept"] = "application/json"
                 headers["Content-Type"] = "application/json"
             }
 
