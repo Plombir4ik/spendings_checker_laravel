@@ -46,14 +46,14 @@ Route::group([
     Route::delete('/{category}', 'DeleteController')->middleware('category.owner');
 });
 
-//Route::group([
-//    'middleware' => 'auth',
-//    'prefix' => 'transactions',
-//    'namespace' => 'transaction'
-//], function () {
-//    Route::get('/', 'IndexController');
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'transactions',
+    'namespace' => 'transaction'
+], function () {
+    Route::get('/', 'IndexController');
 //    Route::get('/{transaction}', 'ShowController');
 //    Route::post('/', 'StoreController');
 //    Route::patch('/{transaction}', 'UpdateController');
 //    Route::delete('/{transaction}', 'DeleteController');
-//});
+});

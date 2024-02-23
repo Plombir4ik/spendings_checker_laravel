@@ -31,5 +31,16 @@ export const useAuth = () => {
         setReady(true)
     }, [login])
 
-    return {login, logout, token, userId, ready}
+    const checkTokenExpiration = () => {
+
+        const tokenData = JSON.parse(atob(token.split('.')[1]));
+        const currentTime = Math.floor(Date.now() / 1000);
+
+        if (tokenData.exp < currentTime) {
+            logout();
+        }
+
+    };
+
+    return {login, logout, token, userId, ready, checkTokenExpiration}
 }

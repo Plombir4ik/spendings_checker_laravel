@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useRoutes } from "./routes";
 import { useAuth } from "./hooks/auth.hook";
@@ -8,9 +8,15 @@ import { Loader } from "./components/Loader";
 import "materialize-css";
 
 function App() {
-  const { token, login, logout, userId, ready } = useAuth();
+  const { token, login, logout, userId, ready, checkTokenExpiration } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            checkTokenExpiration(); // Вызываем функцию проверки срока действия токена при каждом рендере компонента
+        }
+    }, [isAuthenticated, checkTokenExpiration]);
 
   if (!ready) {
     return <Loader />;

@@ -149,7 +149,7 @@ export const TransactionsPage = () => {
                       {index + 1}
                     </td>
                     <td className="col s2" style={topBottomMargin}>
-                      {transaction.categoryName}
+                      {transaction.category_name}
                     </td>
                     <td className="col s2" style={topBottomMargin}>
                       {transaction.type}
