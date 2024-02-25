@@ -52,8 +52,8 @@ Route::group([
     'namespace' => 'transaction'
 ], function () {
     Route::get('/', 'IndexController');
-//    Route::get('/{transaction}', 'ShowController');
-//    Route::post('/', 'StoreController');
-//    Route::patch('/{transaction}', 'UpdateController');
-//    Route::delete('/{transaction}', 'DeleteController');
+    Route::get('/{transaction}', 'ShowController');
+    Route::post('/', 'StoreController');
+    Route::patch('/{transaction}', 'UpdateController');
+    Route::delete('/{transaction}', 'DeleteController');
 });

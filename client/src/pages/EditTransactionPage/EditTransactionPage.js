@@ -29,7 +29,7 @@ export const EditTransactionPage = () => {
     type: "",
     sum: Float32Array,
     description: "",
-    dateInfo: Date(),
+    dateInfo: moment(Date()).format(),
   });
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
@@ -80,8 +80,7 @@ export const EditTransactionPage = () => {
       // format: "yyyy/mm/dd",
       container: "body",
       onSelect: function (date) {
-        setForm({ ...form, dateInfo: date });
-        console.log(moment(date).tz("Europe/Berlin").format()); // Selected date is logged
+        setForm({ ...form, dateInfo: moment(date).format() });
       },
       autoClose: true,
     });
@@ -105,7 +104,7 @@ export const EditTransactionPage = () => {
       if (transactionId !== undefined) {
         await request(
           "/api/transactions/" + transactionId,
-          "PUT",
+          "PATCH",
           { ...form },
           {
             Authorization: "Bearer" + " " + auth.token,
@@ -113,7 +112,7 @@ export const EditTransactionPage = () => {
         );
       } else {
         await request(
-          "/api/transactions/create",
+          "/api/transactions",
           "POST",
           { ...form },
           {
@@ -156,13 +155,21 @@ export const EditTransactionPage = () => {
             Назва категорії
           </h5>
           <div className="input-field col s3 offset-s0">
-            <select name="category" value={form.category} onChange={dataChange}>
-              <option value="" disabled selected>
-                Тип категорії
-              </option>
-              {categories.map((category, index) => {
-                return <option value={category._id}>{category.name}</option>;
-              })}
+            <select name="category"  onChange={dataChange}>
+              {transactionId === undefined && (
+                  <option value="" disabled selected>
+                    Назва категорії
+                  </option>
+              )}
+              {categories.map((category, index) => (
+                  <option
+                      key={index}
+                      value={category.id}
+                      selected={category.id == form.categoryId}
+                  >
+                    {category.name}
+                  </option>
+              ))}
             </select>
           </div>
         </div>

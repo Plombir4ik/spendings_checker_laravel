@@ -52,9 +52,9 @@ export const TransactionsPage = () => {
     async (transactionId) => {
       try {
         const data = await request(
-          "api/transactions",
+          `api/transactions/${transactionId}`,
           "DELETE",
-          { transactionId: transactionId },
+          {},
           {
             Authorization: "Bearer" + " " + token,
           }
@@ -121,7 +121,7 @@ export const TransactionsPage = () => {
                 Виберіть категорію
               </option>
               {categories.map((category, index) => {
-                return <option value={category._id}>{category.name}</option>;
+                return <option value={category.id}>{category.name}</option>;
               })}
             </select>
           </div>
@@ -144,12 +144,12 @@ export const TransactionsPage = () => {
             <tbody>
               {transactions.filter(fil).map((transaction, index) => {
                 return (
-                  <tr key={transaction._id} style={{ marginTop: 15 }}>
+                  <tr key={transaction.id} style={{ marginTop: 15 }}>
                     <td className="col s1" style={topBottomMargin}>
                       {index + 1}
                     </td>
                     <td className="col s2" style={topBottomMargin}>
-                      {transaction.category_name}
+                      {transaction.categoryName}
                     </td>
                     <td className="col s2" style={topBottomMargin}>
                       {transaction.type}
@@ -158,7 +158,7 @@ export const TransactionsPage = () => {
                       {Number(transaction.sum).toFixed(2)} ₴
                     </td>
                     <td className="col s1" style={topBottomMargin}>
-                      {moment(transaction.date).format("DD.MM.YYYY")}
+                      {moment(transaction.dateInfo).format("DD.MM.YYYY")}
                     </td>
                     <td className="col s3" style={topBottomMargin}>
                       {transaction.description}
@@ -168,7 +168,7 @@ export const TransactionsPage = () => {
                         <Edit
                           fontSize="large"
                           onClick={() => {
-                            navigate("/transactions/" + transaction._id);
+                            navigate("/transactions/" + transaction.id);
                           }}
                         />
                       </IconButton>
@@ -176,7 +176,7 @@ export const TransactionsPage = () => {
                         <HighLightOff
                           fontSize="large"
                           onClick={() => {
-                            deleteTransaction(transaction._id);
+                            deleteTransaction(transaction.id);
                           }}
                         />
                       </IconButton>
