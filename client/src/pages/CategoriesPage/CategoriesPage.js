@@ -119,7 +119,7 @@ export const CategoriesPage = () => {
                 </table>
                 <ul className="pagination large" style={{marginTop: "25px"}}>
                     {paginationInfo.meta.links.map((link, index) => {
-                        if (link.label == '&laquo; Previous')
+                        if (link.label === '&laquo; Previous')
                             return (
                                 <li>
                                     <a class="waves-effect" onClick={() => {
@@ -129,7 +129,7 @@ export const CategoriesPage = () => {
                                         <ChevronLeftIcon style={{color: 'indigo'}} fontSize="large"/>
                                     </a>
                                 </li>)
-                        if (link.label == 'Next &raquo;')
+                        if (link.label === 'Next &raquo;')
                             return (
                                 <li>
                                     <a class="waves-effect" onClick={() => {

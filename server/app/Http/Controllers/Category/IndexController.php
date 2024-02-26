@@ -14,10 +14,10 @@ class IndexController extends Controller
         $data = $request->all();
         $page = $data['page'] ?? 1;
 
-        $paginationData  = auth()->user()->categories()->paginate(10, ['*'], 'page', $page);
+        $pagination_data  = auth()->user()->categories()->paginate(10, ['*'], 'page', $page);
 
-        $paginationData->setPath('');
+        $pagination_data->setPath('');
 
-        return CategoryResource::collection($paginationData);
+        return CategoryResource::collection($pagination_data);
     }
 }
