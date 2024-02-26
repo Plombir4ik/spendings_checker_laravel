@@ -44,7 +44,7 @@ export const TransactionsPage = () => {
         Authorization: "Bearer" + " " + token,
       });
       const { categories, transactions } = fetched;
-      console.log(categories);
+
       setCategories(categories);
       setTransactions(transactions);
     } catch (e) {}
@@ -189,29 +189,6 @@ export const TransactionsPage = () => {
             </tbody>
           </table>
         </div>
-        <ul className="pagination large" style={{marginTop: "25px"}}>
-          <li className="disabled">
-            <a href="#!">
-
-              <ChevronLeftIcon style={{color: 'indigo'}} fontSize="large"/>
-
-            </a>
-          </li>
-          <li className="indigo active" ><a href="#!">1</a></li>
-          <li className="waves-effect"><a href="#!">2</a></li>
-          <li className="waves-effect"><a href="#!">3</a></li>
-          <li className="waves-effect"><a href="#!">4</a></li>
-          <li className="waves-effect"><a href="#!">5</a></li>
-          <li className="waves-effect"><a href="#!">6</a></li>
-          <li className="waves-effect"><a href="#!">7</a></li>
-          <li >
-            <a href="#!">
-
-              <ChevronRightIcon style={{color: 'indigo'}} fontSize="large"/>
-
-            </a>
-          </li>
-        </ul>
         <a
           class="waves-effect indigo btn"
           style={{ marginTop: "8px", marginBottom: "2rem", marginLeft: 25 }}

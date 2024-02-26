@@ -52,7 +52,7 @@ export const EditTransactionPage = () => {
       const fetched = await request("/api/categories", "GET", null, {
         Authorization: "Bearer" + " " + token,
       });
-      setCategories(fetched);
+      setCategories(fetched.data);
     } catch (e) {}
   }, [token, request]);
 
@@ -77,6 +77,7 @@ export const EditTransactionPage = () => {
     var elems = document.querySelectorAll(".dateset");
     Materialize.Datepicker.init(elems, {
       //defaultDate: new Date(),
+      maxDate: new Date(),
       // format: "yyyy/mm/dd",
       container: "body",
       onSelect: function (date) {

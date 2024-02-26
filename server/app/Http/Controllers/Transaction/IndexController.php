@@ -11,7 +11,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         $categories = auth()->user()->categories;
-        $transactions = auth()->user()->transactions;
+        $transactions = auth()->user()->transactions()->orderBy('date', 'desc')->get();
 
 //        TransactionResource
 

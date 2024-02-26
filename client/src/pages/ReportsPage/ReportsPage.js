@@ -30,6 +30,7 @@ export const ReportsPage = () => {
     var elems = document.querySelectorAll(".dateset");
     Materialize.Datepicker.init(elems, {
       defaultDate: new Date(),
+      maxDate: new Date(),
       // format: "yyyy/mm/dd",
       container: "body",
       onSelect: function (date) {
@@ -42,6 +43,7 @@ export const ReportsPage = () => {
     var elems = document.querySelectorAll(".dateset2");
     Materialize.Datepicker.init(elems, {
       defaultDate: new Date(),
+      maxDate: new Date(),
       // format: "yyyy/mm/dd",
       container: "body",
       onSelect: function (date) {
