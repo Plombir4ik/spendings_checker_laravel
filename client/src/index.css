@@ -1,1 +1,5 @@
 @import "~materialize-css/dist/css/materialize.min.css";
+
+button:focus {
+    background-color: transparent  !important; /* Переопределяем цвет с использованием !important */
+}

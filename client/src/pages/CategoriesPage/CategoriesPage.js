@@ -5,6 +5,8 @@ import { useHttp } from "../../hooks/http.hook";
 import { Loader } from "../../components/Loader";
 import Edit from "@material-ui/icons/EditOutlined";
 import HighLightOff from "@material-ui/icons/DeleteOutline";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from "@material-ui/core/Button";
 import "./style.css";
 
@@ -108,9 +110,32 @@ export const CategoriesPage = () => {
             })}
           </tbody>
         </table>
+          <ul className="pagination large" style={{marginTop: "25px"}}>
+              <li className="disabled">
+                  <a href="#!">
+
+                          <ChevronLeftIcon style={{color: 'indigo'}} fontSize="large"/>
+
+                </a>
+              </li>
+              <li className="indigo active" ><a href="#!">1</a></li>
+              <li className="waves-effect"><a href="#!">2</a></li>
+              <li className="waves-effect"><a href="#!">3</a></li>
+              <li className="waves-effect"><a href="#!">4</a></li>
+              <li className="waves-effect"><a href="#!">5</a></li>
+              <li className="waves-effect"><a href="#!">6</a></li>
+              <li className="waves-effect"><a href="#!">7</a></li>
+              <li >
+                  <a href="#!">
+
+                          <ChevronRightIcon style={{color: 'indigo'}} fontSize="large"/>
+
+                 </a>
+              </li>
+          </ul>
         <a
           class="waves-effect indigo btn"
-          style={{ marginTop: "2rem", marginBottom: "2rem", marginLeft: 25 }}
+          style={{ marginTop: "8px", marginBottom: "2rem", marginLeft: 25 }}
           onClick={() => {
             navigate("/categories/create");
           }}
