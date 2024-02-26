@@ -9,9 +9,15 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $data = auth()->user()->categories;
-        return response()->json(CategoryResource::collection($data));
+        $data = $request->all();
+        $page = $data['page'] ?? 1;
+
+        $paginationData  = auth()->user()->categories()->paginate(10, ['*'], 'page', $page);
+
+        $paginationData->setPath('');
+
+        return CategoryResource::collection($paginationData);
     }
 }
