@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useLayoutEffect,
 } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Materialize from "materialize-css";
 import moment from "moment";
 import {
@@ -25,14 +25,21 @@ import { Loader } from "../../components/Loader";
 import faker from "faker"; //?????????????????????????????????
 
 export const ReportsLinePage = () => {
-  const urlId = useParams().id;
+
   const [transactions, setTransactions] = useState([]);
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const dateFrom = searchParams.get('date_from');
+  const dateTo = searchParams.get('date_to');
+  const type = searchParams.get('type');
+
   const loadCategories = useCallback(async () => {
     try {
-      const fetched = await request("/api/reports/line/" + urlId, "GET", null, {
+      const fetched = await request(`/api/reports/line?date_from=${dateFrom}&date_to=${dateTo}&type=${type}`, "GET", null, {
         Authorization: "Bearer" + " " + token,
       });
       setTransactions(fetched);
@@ -76,7 +83,7 @@ export const ReportsLinePage = () => {
     labels: transactions.map((tran) => moment(tran.date).format("DD.MM.YYYY")),
     datasets: [
       {
-        label: urlId.split("_")[1],
+        label: type,
         data: transactions.map((tran) => tran.sum),
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",

@@ -38,17 +38,6 @@ export const useAuth = () => {
 
         if (tokenData.exp < currentTime) {
             logout();
-        } else {
-                const response = await fetch('/api/auth/me', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    logout();
-                }
         }
 
     };

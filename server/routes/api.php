@@ -57,3 +57,12 @@ Route::group([
     Route::patch('/{transaction}', 'UpdateController');
     Route::delete('/{transaction}', 'DeleteController');
 });
+
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'reports',
+    'namespace' => 'report'
+], function () {
+    Route::get('/pie', 'PieController');
+    Route::get('/line', 'LineController');
+});

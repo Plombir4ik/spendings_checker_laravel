@@ -30,8 +30,8 @@ export const useRoutes = (isAuthenticated) => {
         />
 
         <Route path="/reports" exact element={<ReportsPage />} />
-        <Route path="/reports/line/:id" exact element={<ReportsLinePage />} />
-        <Route path="/reports/pie/:id" exact element={<ReportsPiePage />} />
+        <Route path="/reports/line" exact element={<ReportsLinePage />} />
+        <Route path="/reports/pie" exact element={<ReportsPiePage />} />
 
         <Route path="*" element={<Navigate to="/categories" />} />
       </Routes>

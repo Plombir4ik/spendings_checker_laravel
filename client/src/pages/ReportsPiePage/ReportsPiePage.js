@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useLayoutEffect,
 } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { AuthContext } from "../../context/AuthContext";
@@ -16,14 +16,20 @@ import moment from "moment";
 export const ReportsPiePage = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const urlId = useParams().id;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const dateFrom = searchParams.get('date_from');
+  const dateTo = searchParams.get('date_to');
+  const type = searchParams.get('type');
+
   const [categories, setCategories] = useState([]);
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
 
   const loadCategories = useCallback(async () => {
     try {
-      const fetched = await request("/api/reports/pie/" + urlId, "GET", null, {
+      const fetched = await request(`/api/reports/pie?date_from=${dateFrom}&date_to=${dateTo}&type=${type}`, "GET", null, {
         Authorization: "Bearer" + " " + token,
       });
       setCategories(fetched);
@@ -79,9 +85,9 @@ export const ReportsPiePage = () => {
           }}
         >
           Звіти по категоріям за період:{" "}
-          {moment(urlId.split("_")[0]).format("DD.MM.YYYY") +
-            "-" +
-            moment(urlId.split("_")[2]).format("DD.MM.YYYY")}{" "}
+          {/*{moment(dateFrom).format("DD.MM.YYYY") +*/}
+          {/*  "-" +*/}
+          {/*  moment(dateTo).format("DD.MM.YYYY")}{" "}*/}
         </h3>
       </div>
       <div className="row">
