@@ -40,6 +40,7 @@ Route::group([
     'namespace' => 'category'
 ], function () {
     Route::get('/', 'IndexController');
+    Route::get('/all', 'AllCategoriesController');
     Route::get('/{category}', 'ShowController')->middleware('category.owner');
     Route::post('/', 'StoreController');
     Route::patch('/{category}', 'UpdateController')->middleware('category.owner');

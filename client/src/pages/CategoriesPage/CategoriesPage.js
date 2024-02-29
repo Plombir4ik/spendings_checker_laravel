@@ -90,8 +90,8 @@ export const CategoriesPage = () => {
                     <tbody>
                     {categories.map((category, index) => {
                         return (
-                            <tr key={category._id}>
-                                <td>{index + 1}</td>
+                            <tr key={category.id}>
+                                <td>{(paginationInfo.meta.from) + index}</td>
                                 <td>{category.name}</td>
                                 <td>{category.description}</td>
                                 <td>

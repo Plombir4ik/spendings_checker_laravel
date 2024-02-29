@@ -10,62 +10,29 @@ import moment from "moment";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 import { Loader } from "../../components/Loader";
-import HighLightOff from "@material-ui/icons/DeleteOutline";
-import Edit from "@material-ui/icons/EditOutlined";
-import IconButton from "@material-ui/core/Button";
+import { Table } from "../../components/TransactionsTable";
 import "./style.css";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 export const TransactionsPage = () => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState("");
-  const [transactions, setTransactions] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState({
-    id: "",
-    name: "",
-  });
-  const [selectedName, setSelectedName] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [categoryId, setCategoryId] = useState('');
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
 
-  const dataChange = (event) => {
-    var index = event.nativeEvent.target.selectedIndex;
-    console.log(event);
-    setSelectedCategory({
-      id: event.target.value,
-      name: event.nativeEvent.target[index].text,
-    });
+  const dataChange = async (event) => {
+    setCategoryId(event.target.value);
   };
 
   const loadData = useCallback(async () => {
     try {
-      const fetched = await request("api/transactions", "GET", null, {
+      const fetched = await request("api/categories/all", "GET", null, {
         Authorization: "Bearer" + " " + token,
       });
-      const { categories, transactions } = fetched;
-
-      setCategories(categories);
-      setTransactions(transactions);
+      setCategories(fetched);
     } catch (e) {}
   }, [token, request]);
 
-  const deleteTransaction = useCallback(
-    async (transactionId) => {
-      try {
-        const data = await request(
-          `api/transactions/${transactionId}`,
-          "DELETE",
-          {},
-          {
-            Authorization: "Bearer" + " " + token,
-          }
-        );
-      } catch (e) {}
-      loadData();
-    },
-    [token, request]
-  );
 
   useLayoutEffect(() => {
     window.M.AutoInit();
@@ -75,42 +42,26 @@ export const TransactionsPage = () => {
     loadData();
   }, [loadData]);
 
-  function fil(value) {
-    if (selectedCategory.id == "") {
-      return true;
-    } else {
-      if (value.categoryId === selectedCategory.id) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  const topBottomMargin = {
-    marginTop: 15,
-    marginBottom: 15,
-  };
 
   if (loading) {
     return <Loader />;
   }
 
-  if (!transactions.length) {
-    return (
-      <div className="row">
-        <p className="center">Транзакції відсутні</p>
-        <a
-          class="col s2 offset-s5 waves-effect indigo btn center-align"
-          onClick={() => {
-            navigate("/transactions/create");
-          }}
-        >
-          Додати Транзакцію
-        </a>
-      </div>
-    );
-  }
+  // if (!transactions.length) {
+  //   return (
+  //     <div className="row">
+  //       <p className="center">Транзакції відсутні</p>
+  //       <a
+  //         class="col s2 offset-s5 waves-effect indigo btn center-align"
+  //         onClick={() => {
+  //           navigate("/transactions/create");
+  //         }}
+  //       >
+  //         Додати Транзакцію
+  //       </a>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
@@ -129,66 +80,8 @@ export const TransactionsPage = () => {
           </div>
         </div>
 
-        <div className="row">
-          <table className="col s12 centered striped highlight">
-            <thead>
-              <tr>
-                <th className="col s1">№</th>
-                <th className="col s2">Категорія</th>
-                <th className="col s2">Тип операції</th>
-                <th className="col s1">Сума</th>
-                <th className="col s1">Дата</th>
-                <th className="col s3">Опис</th>
-                <th className="col s2 ">Управління</th>
-              </tr>
-            </thead>
+        <Table categoryId={categoryId} />
 
-            <tbody>
-              {transactions.filter(fil).map((transaction, index) => {
-                return (
-                  <tr key={transaction.id} style={{ marginTop: 15 }}>
-                    <td className="col s1" style={topBottomMargin}>
-                      {index + 1}
-                    </td>
-                    <td className="col s2" style={topBottomMargin}>
-                      {transaction.categoryName}
-                    </td>
-                    <td className="col s2" style={topBottomMargin}>
-                      {transaction.type}
-                    </td>
-                    <td className="col s1" style={topBottomMargin}>
-                      {Number(transaction.sum).toFixed(2)} ₴
-                    </td>
-                    <td className="col s1" style={topBottomMargin}>
-                      {moment(transaction.dateInfo).format("DD.MM.YYYY")}
-                    </td>
-                    <td className="col s3" style={topBottomMargin}>
-                      {transaction.description}
-                    </td>
-                    <td className="col s2">
-                      <IconButton>
-                        <Edit
-                          fontSize="large"
-                          onClick={() => {
-                            navigate("/transactions/" + transaction.id);
-                          }}
-                        />
-                      </IconButton>
-                      <IconButton>
-                        <HighLightOff
-                          fontSize="large"
-                          onClick={() => {
-                            deleteTransaction(transaction.id);
-                          }}
-                        />
-                      </IconButton>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
         <a
           class="waves-effect indigo btn"
           style={{ marginTop: "8px", marginBottom: "2rem", marginLeft: 25 }}
