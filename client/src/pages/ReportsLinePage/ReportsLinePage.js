@@ -33,8 +33,8 @@ export const ReportsLinePage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
-  const dateFrom = searchParams.get('date_from');
-  const dateTo = searchParams.get('date_to');
+  const dateFrom =  moment(searchParams.get('date_from')).subtract(1, 'days').format();
+  const dateTo =  moment(searchParams.get('date_to')).format();
   const type = searchParams.get('type');
 
   const loadCategories = useCallback(async () => {

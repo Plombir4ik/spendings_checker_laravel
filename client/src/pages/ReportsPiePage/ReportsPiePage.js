@@ -19,8 +19,8 @@ export const ReportsPiePage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
-  const dateFrom = searchParams.get('date_from');
-  const dateTo = searchParams.get('date_to');
+  const dateFrom = moment(searchParams.get('date_from')).subtract(1, 'days').format();
+  const dateTo = moment(searchParams.get('date_to')).format();
   const type = searchParams.get('type');
 
   const [categories, setCategories] = useState([]);
@@ -80,14 +80,14 @@ export const ReportsPiePage = () => {
       <div className="row">
         <h3
           className="center-align"
-          onClick={() => {
-            console.log("fromId");
-          }}
         >
-          Звіти по категоріям за період:{" "}
-          {/*{moment(dateFrom).format("DD.MM.YYYY") +*/}
-          {/*  "-" +*/}
-          {/*  moment(dateTo).format("DD.MM.YYYY")}{" "}*/}
+          Звіт {type == 'Витрата' ? 'витрат' : 'заробітку'} по категоріям за період:
+          <div>
+            {moment(dateFrom).format("DD.MM.YYYY") +
+                " - " +
+                moment(dateTo).format("DD.MM.YYYY")}{" "}
+          </div>
+
         </h3>
       </div>
       <div className="row">

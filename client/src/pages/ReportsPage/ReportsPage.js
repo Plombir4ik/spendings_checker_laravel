@@ -105,7 +105,7 @@ export const ReportsPage = () => {
               className="col s2 waves-effect indigo btn "
               style={{ marginTop: 25, marginLeft: 25 }}
               onClick={() => {
-                navigate(`/reports/pie?date_from=${moment(form.dateFrom).format()}&date_to=${moment(form.dateTo).format()}&type=${form.type} `);
+                navigate(`/reports/pie?date_from=${form.dateFrom}&date_to=${form.dateTo}&type=${form.type} `);
               }}
             >
               Графік
@@ -114,7 +114,7 @@ export const ReportsPage = () => {
               className="col s2 waves-effect indigo btn "
               style={{ marginTop: 25, marginLeft: 25 }}
               onClick={() => {
-                navigate(`/reports/line?date_from=${moment(form.dateFrom).format()}&date_to=${moment(form.dateTo).format()}&type=${form.type} `);
+                navigate(`/reports/line?date_from=${form.dateFrom}&date_to=${form.dateTo}&type=${form.type} `);
               }}
             >
               По датам

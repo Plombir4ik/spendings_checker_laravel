@@ -14,7 +14,7 @@ class LineController extends Controller
     public function __invoke(FilterRequest $request)
     {
         $data = $request->validated();
-        $transactions = Transaction::where('date', '>', $data['date_from'])
+        $transactions = Transaction::where('date', '>=', $data['date_from'])
             ->where('date', '<', $data['date_to'])
             ->where('type', $data['type'])
             ->get();
