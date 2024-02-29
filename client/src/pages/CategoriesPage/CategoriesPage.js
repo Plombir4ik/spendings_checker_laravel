@@ -4,7 +4,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {useHttp} from "../../hooks/http.hook";
 import {Loader} from "../../components/Loader";
 import Edit from "@material-ui/icons/EditOutlined";
-import HighLightOff from "@material-ui/icons/DeleteOutline";
+import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from "@material-ui/core/Button";
@@ -104,7 +104,7 @@ export const CategoriesPage = () => {
                                         />
                                     </IconButton>
                                     <IconButton>
-                                        <HighLightOff
+                                        <DeleteOutline
                                             fontSize="large"
                                             onClick={() => {
                                                 deleteCategory(category.id, index);
