@@ -46,7 +46,7 @@ export const Table = (props) => {
 
     useEffect(() => {
         loadTransactions(props.categoryId);
-    }, [props]);
+    }, [props.categoryId]);
 
     if (loading) {
         return <Loader />;
@@ -123,7 +123,6 @@ export const Table = (props) => {
                         return (
                             <li>
                                 <a class="waves-effect" onClick={() => {
-                                    // navigate(link.url);
                                     loadTransactions(props.categoryId,link.url.split('=')[1]);
                                 }}>
                                     <ChevronLeftIcon style={{color: 'indigo'}} fontSize="large"/>
@@ -133,7 +132,6 @@ export const Table = (props) => {
                         return (
                             <li>
                                 <a class="waves-effect" onClick={() => {
-                                    // navigate(link.url);
                                     loadTransactions(props.categoryId,link.url.split('=')[1]);
                                 }}>
                                     <ChevronRightIcon style={{color: 'indigo'}} fontSize="large"/>
@@ -142,7 +140,6 @@ export const Table = (props) => {
                     return (
                         <li className={`waves-effect ${link.active ? 'active indigo' : ''}`}>
                             <a  onClick={() => {
-                                // navigate(link.url);
                                 loadTransactions(props.categoryId,link.url.split('=')[1]);
                             }}>
                                 {link.label}

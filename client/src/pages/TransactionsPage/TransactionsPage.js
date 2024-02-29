@@ -6,7 +6,6 @@ import React, {
   useLayoutEffect,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 import { Loader } from "../../components/Loader";
@@ -17,6 +16,7 @@ export const TransactionsPage = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState('');
+  const [showTable, setShowTable] = useState(false)
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
 
@@ -40,29 +40,14 @@ export const TransactionsPage = () => {
 
   useEffect(() => {
     loadData();
+    setShowTable(true);
   }, [loadData]);
 
 
   if (loading) {
     return <Loader />;
   }
-
-  // if (!transactions.length) {
-  //   return (
-  //     <div className="row">
-  //       <p className="center">Транзакції відсутні</p>
-  //       <a
-  //         class="col s2 offset-s5 waves-effect indigo btn center-align"
-  //         onClick={() => {
-  //           navigate("/transactions/create");
-  //         }}
-  //       >
-  //         Додати Транзакцію
-  //       </a>
-  //     </div>
-  //   );
-  // }
-
+  
   return (
     <div>
       <h3 className=" center-align">Транзакції </h3>
@@ -80,7 +65,7 @@ export const TransactionsPage = () => {
           </div>
         </div>
 
-        <Table categoryId={categoryId} />
+        {showTable && <Table categoryId={categoryId} />}
 
         <a
           class="waves-effect indigo btn"
