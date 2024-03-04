@@ -5,7 +5,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import MenuIcon from "@material-ui/icons/Menu";
 
 
-export const NavBar = () => {
+export const Navbar = () => {
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
 
