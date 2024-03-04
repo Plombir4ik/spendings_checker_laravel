@@ -74,7 +74,7 @@ export const AuthPage = () => {
               onClick={login}
               disabled={loading}
             >
-              Вхід{" "}
+              Увійти{" "}
             </a>
             <a
               className="waves-effect grey btn"
@@ -82,7 +82,7 @@ export const AuthPage = () => {
               disabled={loading}
             >
               {" "}
-              Реєстрація{" "}
+              Зареєструвати{" "}
             </a>
           </div>
         </div>

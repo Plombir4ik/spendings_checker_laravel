@@ -47,7 +47,7 @@ export const TransactionsPage = () => {
   if (loading) {
     return <Loader />;
   }
-  
+
   return (
     <div>
       <h3 className=" center-align">Транзакції </h3>

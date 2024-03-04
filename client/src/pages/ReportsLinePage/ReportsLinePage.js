@@ -94,7 +94,7 @@ export const ReportsLinePage = () => {
   return (
     <div>
       <div className="row">
-        <h3 className="center-align">Звіти по дням</h3>
+        <h3 className="center-align">Звіт по дням</h3>
       </div>
       <div className="row">
         <Line options={options} data={data} />

@@ -34,32 +34,32 @@ export const NavBar = () => {
                     Spendings-checker
                 </label>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><NavLink to="/categories">Categories</NavLink></li>
-                    <li><NavLink to="/transactions">Transactions</NavLink></li>
-                    <li><NavLink to="/reports">Reports</NavLink></li>
-                    <li><a href="/" onClick={logout}>Logout</a></li>
+                    <li><NavLink to="/categories" style={{fontSize: "20px", marginRight : '5px'}}>Категорії</NavLink></li>
+                    <li><NavLink to="/transactions" style={{fontSize: "20px", marginRight : '5px'}}>Транзакції</NavLink></li>
+                    <li><NavLink to="/reports" style={{fontSize: "20px", marginRight : '5px'}}>Звіти</NavLink></li>
+                    <li><a href="/" onClick={logout} style={{fontSize: "20px", marginRight : '5px'}}>Вийти</a></li>
                 </ul>
             </div>
 
             <ul className="sidenav" id="mobile-nav">
                 <li>
-                    <NavLink to="/categories" onClick={() => M.Sidenav.getInstance(document.querySelector('.sidenav')).close()}>
-                        Categories
+                    <NavLink to="/categories" style={{fontSize: "20px", marginTop : '5px'}} onClick={() => M.Sidenav.getInstance(document.querySelector('.sidenav')).close()}>
+                        Категорії
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/transactions" onClick={() => M.Sidenav.getInstance(document.querySelector('.sidenav')).close()}>
-                        Transactions
+                    <NavLink to="/transactions" style={{fontSize: "20px", marginTop : '5px'}} onClick={() => M.Sidenav.getInstance(document.querySelector('.sidenav')).close()}>
+                        Транзакції
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/reports" onClick={() => M.Sidenav.getInstance(document.querySelector('.sidenav')).close()}>
-                        Reports
+                    <NavLink to="/reports" style={{fontSize: "20px", marginTop : '5px'}} onClick={() => M.Sidenav.getInstance(document.querySelector('.sidenav')).close()}>
+                        Звіти
                     </NavLink>
                 </li>
                 <li>
-                    <a href="/" onClick={() => {M.Sidenav.getInstance(document.querySelector('.sidenav')).close(); logout();}}>
-                        Logout
+                    <a href="/" style={{fontSize: "20px", marginTop : '5px'}} onClick={() => {M.Sidenav.getInstance(document.querySelector('.sidenav')).close(); logout();}}>
+                        Вийти
                     </a>
                 </li>
             </ul>
