@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useHttp } from "../../hooks/http.hook";
 import "./style.css";
+import {useMessage} from "../../hooks/message.hook";
 
 export const EditCategoryPage = () => {
+  const message = useMessage();
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const categoryId = useParams().id;
@@ -17,7 +19,7 @@ export const EditCategoryPage = () => {
     name: "",
     description: "",
   });
-  const { loading, request } = useHttp();
+  const { loading, request, error, clearError  } = useHttp();
   const { token } = useContext(AuthContext);
 
   const dataChange = (event) => {
@@ -39,15 +41,17 @@ export const EditCategoryPage = () => {
   }, [token, request, categoryId]);
 
   useEffect(async () => {
-    const info = await loadCategory();
     if (categoryId !== undefined) {
+      const info = await loadCategory();
       SetTitle({
         mainTitle: "Редагування категорії",
         buttonTitle: "Редагувати",
       });
       setForm(info);
     }
-  }, [loadCategory]);
+    message(error);
+    clearError();
+  }, [loadCategory, error, message, clearError]);
 
   const createPressed = async (event) => {
     try {

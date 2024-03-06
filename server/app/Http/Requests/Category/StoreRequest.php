@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Category;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\CustomFormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreRequest extends FormRequest
+class StoreRequest extends CustomFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,19 +31,4 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    /**
-     * Handle a failed validation attempt.
-     *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'message' => 'The given data was invalid.',
-            'errors' => $validator->errors(),
-        ], 422));
-    }
 }
