@@ -16,6 +16,10 @@ export const useHttp = () =>{
             const response = await fetch(url, { method, body, headers })
             const data = await response.json()
 
+            if(response.status === 422){
+                throw new Error("Надані некоректні дані")
+            }
+
             if(!response.ok){
                 throw new Error(data.message || "Щось пішло не так")
             }

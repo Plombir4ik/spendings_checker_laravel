@@ -34,7 +34,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'The given data was invalid.'], 422);
         }
 
         return response()->json([
@@ -130,5 +130,10 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        return response()->json(['message' => 'Зареєстровано!'], 200);
     }
 }
