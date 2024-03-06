@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Report;
 
-use App\Http\Requests\CustomFormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-
-class FilterRequest extends CustomFormRequest
+class FilterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
