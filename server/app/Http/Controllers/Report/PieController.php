@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Report\FilterRequest;
+use App\Http\Requests\Report\ReportRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\Transaction;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class PieController extends Controller
 {
-    public function __invoke(FilterRequest $request)
+    public function __invoke(ReportRequest $request)
     {
         $data = $request->validated();
         $transactions = Transaction::where('date', '>', $data['date_from'])
