@@ -26,7 +26,7 @@ export const Navbar = () => {
                 <a href="#" data-target="mobile-nav" className="sidenav-trigger">
                     <MenuIcon fontSize="large" style={{marginTop : '17px'}} />
                 </a>
-                <label class="brand-logo" style={{opacity: touched ? 0.5 : 1, transition: 'opacity 300ms ease'}}
+                <label class="brand-logo" style={{opacity: touched ? 0.5 : 1, transition: 'opacity 300ms ease', cursor: "pointer"}}
                        onClick={() => navigate("/categories")}
                        onMouseDown={() => touchedSet(true)}
                        onMouseUp={() => touchedSet(false)}

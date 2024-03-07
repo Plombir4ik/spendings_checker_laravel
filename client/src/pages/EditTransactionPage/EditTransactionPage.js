@@ -13,8 +13,10 @@ import moment from "moment";
 import { DatePicker } from "react-materialize";
 import Materialize from "materialize-css";
 import "./style.css";
+import {useMessage} from "../../hooks/message.hook";
 
 export const EditTransactionPage = () => {
+  const message = useMessage();
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const transactionId = useParams().id;
@@ -31,7 +33,7 @@ export const EditTransactionPage = () => {
     description: "",
     dateInfo: moment(Date()).format(),
   });
-  const { loading, request } = useHttp();
+  const { loading, request, error, clearError } = useHttp();
   const { token } = useContext(AuthContext);
 
   const dataChange = (event) => {
@@ -98,7 +100,9 @@ export const EditTransactionPage = () => {
       });
       setForm(info);
     }
-  }, [loadCategories]);
+    message(error);
+    clearError();
+  }, [loadCategories, error, message, clearError]);
 
   const createPressed = async (event) => {
     try {
